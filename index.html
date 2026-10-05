@@ -155,10 +155,13 @@ function setSt(k,v){const i=I();i.stKN=dst(i,'stKN');i.stKPH=dst(i,'stKPH');if((
 function flow(){return '';return `<div class="flow">${STEPS.map((s,i)=>`<button class="${S.view==s[1]?'on':''}" onclick="go('${s[1]}')">${i+1}. ${s[0]}</button>`).join('')}</div>`}
 function head(t,st){return `<h1>${t}</h1>${st?`<p class="sub">${st}</p>`:''}`}
 const V={
-dash(){const n=S.issues.length,dd=S.issues.flatMap(docsOf),dv=dd.filter(x=>x=='Đang xử lý').length,dn=dd.filter(x=>x=='Đã hoàn thành').length,ov=dd.filter(x=>x=='Thu hồi').length;
+dash(){const rows=docList();
+const n=rows.length,dv=rows.filter(r=>r.st=='Đang xử lý').length,dn=rows.filter(r=>r.st=='Đã hoàn thành').length,ov=rows.filter(r=>r.st=='Thu hồi').length;
+const f=S.dashFilter||'',kpi=(lab,val,key,col)=>`<div class="card kpi" role="button" tabindex="0" style="cursor:pointer;${f===key?'outline:2px solid var(--blue);outline-offset:2px;':''}" onclick="S.dashFilter=S.dashFilter==='${key}'?'':'${key}';go('dash')" onkeydown="if(event.key==='Enter'){S.dashFilter=S.dashFilter==='${key}'?'':'${key}';go('dash')}" title="Bấm để lọc / bỏ lọc"><span>${lab}</span><b style="${col||''}">${val}</b></div>`;
 
 return `<h1>Tổng quan chất lượng</h1>
-<div class="grid g4">${[['Tổng số vấn đề',n,''],['Đang xử lý',dv,''],['Đã hoàn thành',dn,''],['Đã hủy hoặc thu hồi',ov,'color:var(--red)']].map(k=>`<div class="card kpi"><span>${k[0]}</span><b style="${k[2]}">${k[1]}</b></div>`).join('')}</div>
+<div class="grid g4">${kpi('Tổng số tài liệu',n,'all','')}${kpi('Đang xử lý',dv,'Đang xử lý','')}${kpi('Đã hoàn thành',dn,'Đã hoàn thành','')}${kpi('Đã hủy hoặc thu hồi',ov,'Thu hồi','color:var(--red)')}</div>
+${f?`<p class="sub" style="margin:0 0 10px">Đang lọc: <b>${f==='all'?'Tất cả':f}</b> — <a href="#" onclick="S.dashFilter='';go('dash');return false" style="color:var(--blue)">Xóa lọc</a></p>`:''}
 <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h2 style="margin:0">Đề xuất gần đây</h2><div class="chips"><button class="btn" onclick="go('new')">Tạo đề xuất mới</button><label class="btn o">Nhập từ Excel<input type="file" accept=".xlsx,.xls" hidden onchange="impXlsx(this.files[0]);this.value=''"></label><button class="btn o" onclick="togShare()">Chia sẻ dữ liệu</button></div></div>${impMsg.t?`<p class="sub" style="margin:8px 0 0;color:var(${impMsg.e?'--red':'--grn'})">${esc(impMsg.t)}</p>`:''}<p class="sub" style="margin:6px 0 10px">${esc(syncMsg)}</p>${shareOpen?`<div class="card" style="background:#f7fbff;margin:0 0 12px">
 <p class="sub" style="margin:0 0 10px"><b>Vì sao người khác mở link không thấy dữ liệu?</b><br>
 Trình duyệt chỉ lưu dữ liệu trên <b>máy của bạn</b> (localStorage). Cùng một link GitHub Pages, mỗi người có dữ liệu riêng.</p>
@@ -390,9 +393,20 @@ function setVer(k,v){const i=I();if(i){i[k]=v;save()}}
 function fpTouch(){const i=I();if(!i)return;const{upd,...r}=i,h=H(JSON.stringify([r,S.cases[i.id]]));S.fp=S.fp||{};if(S.fp[i.id]===undefined)S.fp[i.id]=h;else if(S.fp[i.id]!==h){S.fp[i.id]=h;i.upd=Date.now()}}
 function delDoc(id,k){const b=event.currentTarget;if(b.dataset.ok!=id+k){b.dataset.ok=id+k;b.textContent='Xóa?';b.style.width='auto';b.style.padding='0 6px';b.style.fontSize='12px';setTimeout(()=>{if(b.isConnected)go('dash')},3000);return}
 const i=S.issues.find(x=>x.id==id);if(!i)return;const tk=i.tk||{},cur={kn:tk.kn!==false,kph:tk.kph!==false,nd:tk.nd===true};if(!Object.keys(cur).some(j=>j!=k&&cur[j]))return delIssue(id,1);cur[k]=false;i.tk=cur;i.upd=Date.now();save();go('dash')}
-function docRows(){const f2=n=>String(n).padStart(2,'0'),fu=(t,c)=>{if(!t)return c||'';const d=new Date(t);return `${f2(d.getHours())}:${f2(d.getMinutes())}, ${f2(d.getDate())}/${f2(d.getMonth()+1)}/${d.getFullYear()}`},d='—';
-return S.issues.flatMap(i=>{const x=i.ext||{},tk=i.tk||{};return ['kn','nd','kph'].filter(k=>k=='nd'?tk.nd===true:tk[k]!==false).map(k=>{const M={kn:{code:x.cno||i.id,go:'rep',v:'verKN',s:'stKN',tag:'Thư XK',st:'background:#eaf3ff;color:#1677e8'},nd:{code:(i.nd||{}).no||i.id,go:'repnd',v:'verND',s:'stND',tag:'Thư NĐ',st:'background:#e6f7ef;color:#12805a'},kph:{code:(i.kph||{}).num||x.cno||i.id,go:'kph',v:'verKPH',s:'stKPH',tag:'Phiếu',st:'background:#fff4e5;color:#b25e00'}}[k],code=M.code;
-return `<tr class="row" onclick="S.cur='${i.id}';go('${M.go}')"><td data-l="Mã tài liệu"><b>${esc(code)}</b></td><td data-l="Loại"><span class="tag" style="${M.st}">${M.tag}</span></td><td data-l="Khách hàng">${esc(i.cust)||d}</td><td data-l="Người yêu cầu">${esc(x.requester)||d}</td><td data-l="Phiên bản">${esc(i[M.v]||'V01')}</td><td data-l="Trạng thái">${stat(dst(i,M.s))}</td><td data-l="Cập nhật">${fu(i.upd,i.cdate)}</td><td data-l="Người tạo">${esc(i.by)||d}</td><td class="act"><div style="display:flex;gap:4px"><button class="ed" title="Chỉnh sửa" aria-label="Chỉnh sửa ${esc(code)}" onclick="event.stopPropagation();editIssue('${i.id}')">✎</button><button class="del" title="Xóa" aria-label="Xóa ${esc(code)}" onclick="event.stopPropagation();delDoc('${i.id}','${k}')">−</button></div></td></tr>`})}).join('')}
+function docList(){const f2=n=>String(n).padStart(2,'0'),fu=(t,c)=>{if(!t)return c||'';const d=new Date(t);return f2(d.getHours())+':'+f2(d.getMinutes())+', '+f2(d.getDate())+'/'+f2(d.getMonth()+1)+'/'+d.getFullYear()},d='—';
+const all=[];
+(S.issues||[]).forEach(i=>{const x=i.ext||{},tk=i.tk||{};
+['kn','nd','kph'].filter(k=>k=='nd'?tk.nd===true:tk[k]!==false).forEach(k=>{
+const M={kn:{code:x.cno||i.id,go:'rep',v:'verKN',s:'stKN',tag:'Thư XK',st:'background:#eaf3ff;color:#1677e8'},nd:{code:(i.nd||{}).no||i.id,go:'repnd',v:'verND',s:'stND',tag:'Thư NĐ',st:'background:#e6f7ef;color:#12805a'},kph:{code:(i.kph||{}).num||x.cno||i.id,go:'kph',v:'verKPH',s:'stKPH',tag:'Phiếu',st:'background:#fff4e5;color:#b25e00'}}[k];
+const st=dst(i,M.s);
+all.push({i,k,M,code:M.code,st,cust:i.cust||'',requester:(x.requester||''),ver:i[M.v]||'V01',upd:fu(i.upd,i.cdate),by:i.by||'',id:i.id});
+});});
+return all}
+function docRows(){const d='—',f=S.dashFilter||'';
+let rows=docList();
+if(f&&f!=='all')rows=rows.filter(r=>r.st===f);
+if(!rows.length)return `<tr><td colspan="9" style="text-align:center;color:var(--mute);padding:18px">Không có tài liệu${f&&f!=='all'?' ở trạng thái «'+esc(f)+'»':''}.</td></tr>`;
+return rows.map(r=>`<tr class="row" onclick="S.cur='${r.id}';go('${r.M.go}')"><td data-l="Mã tài liệu"><b>${esc(r.code)}</b></td><td data-l="Loại"><span class="tag" style="${r.M.st}">${r.M.tag}</span></td><td data-l="Khách hàng">${esc(r.cust)||d}</td><td data-l="Người yêu cầu">${esc(r.requester)||d}</td><td data-l="Phiên bản">${esc(r.ver)}</td><td data-l="Trạng thái">${stat(r.st)}</td><td data-l="Cập nhật">${r.upd||d}</td><td data-l="Người tạo">${esc(r.by)||d}</td><td class="act"><div style="display:flex;gap:4px"><button class="ed" title="Chỉnh sửa" aria-label="Chỉnh sửa ${esc(r.code)}" onclick="event.stopPropagation();editIssue('${r.id}')">✎</button><button class="del" title="Xóa" aria-label="Xóa ${esc(r.code)}" onclick="event.stopPropagation();delDoc('${r.id}','${r.k}')">−</button></div></td></tr>`).join('')}
 
 const SH=['requester','country','app'],KF=[['num','Số phiếu'],['place','Nơi xảy ra'],['dept','Bộ phận phát hiện'],['len','Chiều dài (m)'],['origin','Xuất xứ nguyên liệu']];
 function tkShow(){const a=$('#tkn'),b=$('#tkph'),c=$('#tknd');if(!a)return;const sh=(id,on)=>{const e=$('#'+id);if(e)e.style.display=on?'':'none'};sh('sec-kn',a.checked);sh('sec-nd',c.checked);sh('sec-note',!b.checked&&!c.checked);sh('sec-att',!b.checked&&!c.checked);const bs=$('#btn-sv'),ba=$('#btn-an');if(bs){bs.style.display=(b.checked||c.checked)?'':'none'}if(ba)ba.style.display=b.checked?'none':'';const dl=$('#ldesc');if(dl)dl.textContent='Mô tả vấn đề *';sh('sec-sh',a.checked||b.checked);const k=b.checked,t=$('#h2c');if(t)t.textContent=k?'2. Nội dung sự không phù hợp':'2. Thông tin lỗi';sh('nd-tbl',c.checked);sh('lot-box',k)}
