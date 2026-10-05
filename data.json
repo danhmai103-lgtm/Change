@@ -26,9 +26,9 @@
       "CXL"
     ]
   },
-  "cur": "QI-2026-00132",
+  "cur": "QI-2026-00133",
   "view": "dash",
-  "dTab": 4,
+  "dTab": 0,
   "issues": [
     {
       "id": "QI-2026-00133",
@@ -43,10 +43,9 @@
       "note": "",
       "imgs": [],
       "files": [],
-      "status": "Đang xử lý",
+      "status": "Đã hoàn thành",
       "nd": {
         "no": "KN26_076",
-        "c1a": "Ngày 06/06/2026 Quý khách có nhận các cuộn hàng/bó hàng:",
         "rows": [
           {
             "n": "Thép cán nóng PO - 2.00 x 1250 - SPHC",
@@ -63,9 +62,9 @@
         ],
         "t1": "21,730 kg",
         "t2": "21,730 kg – 1,103 m",
-        "c1b": "\n\n\n\nThông tin phản ánh từ khách hàng: Độ dày thực tế 1.82 -1.85mm âm so với tiêu chuẩn sản xuất.\n\n\n\n",
-        "c3": "\n\n\n\nNguyên nhân xảy ra trong quá trình sản xuất.\n\n\n\n",
-        "c4": "-  Công Ty Cổ Phần Thép Nam Kim đồng ý thu hồi số lượng hàng trên theo yêu cầu của khách hàng.\n\n-  Công Ty Cổ Phần Thép Nam Kim xuất trả hóa đơn giá trị gia tăng (bao gồm VAT) theo khối lượng thực\n\n tế thu hồi tại nhà máy.\n\n-   Số tiền thu hồi trên sẽ được cấn trừ vào công nợ giữa hai bên.\n\n\n\n"
+        "c1b": "Độ dày thực tế 1.82 -1.85mm âm so với tiêu chuẩn sản xuất.\n\n\n\nThông tin phản ánh từ khách hàng: Độ dày thực tế 1.82 -1.85mm âm so với tiêu chuẩn sản xuất.\n\n\n\n",
+        "c3": "\nNguyên nhân xảy ra trong quá trình sản xuất.\n\n",
+        "c4": "-  Công Ty Cổ Phần Thép Nam Kim đồng ý thu hồi số lượng hàng trên theo yêu cầu của khách hàng.\n-  Công Ty Cổ Phần Thép Nam Kim xuất trả hóa đơn giá trị gia tăng (bao gồm VAT) theo khối lượng thực\n tế thu hồi tại nhà máy.\n-   Số tiền thu hồi trên sẽ được cấn trừ vào công nợ giữa hai bên.\n\n"
       },
       "kph": {},
       "lot": "",
@@ -90,7 +89,10 @@
         "kph": false,
         "nd": true
       },
-      "upd": 1791172328179
+      "upd": 1791182846691,
+      "stKN": "Đang xử lý",
+      "stKPH": "Đang xử lý",
+      "stND": "Đã hoàn thành"
     },
     {
       "id": "QI-2026-00132",
@@ -99,6 +101,62 @@
       "defect": "",
       "product": "",
       "cust": "",
+      "sev": "",
+      "by": "Mai Công Danh",
+      "role": "Kĩ sư QA",
+      "note": "",
+      "imgs": [],
+      "files": [],
+      "status": "Đang xử lý",
+      "nd": {
+        "no": "",
+        "rows": [
+          {
+            "n": "",
+            "c": "",
+            "e": "",
+            "l": ""
+          },
+          {
+            "n": "",
+            "c": "",
+            "e": "",
+            "l": ""
+          }
+        ]
+      },
+      "kph": {},
+      "lot": "",
+      "due": "2026-10-05",
+      "ext": {
+        "requester": "",
+        "country": "",
+        "project": "",
+        "order": "",
+        "total": "",
+        "prodDate": "",
+        "shipDate": "",
+        "recvDate": "",
+        "app": "",
+        "pos": "",
+        "cno": "",
+        "round": ""
+      },
+      "coils": [],
+      "tk": {
+        "kn": false,
+        "kph": false,
+        "nd": true
+      },
+      "upd": 1791171105840
+    },
+    {
+      "id": "QI-2026-00131",
+      "desc": "Ngày 06/06/2026 Quý khách có nhận các cuộn hàng/bó hàng:",
+      "cdate": "2026-10-05",
+      "defect": "",
+      "product": "",
+      "cust": "Samsung",
       "sev": "",
       "by": "Mai Công Danh",
       "role": "Kĩ sư QA",
@@ -146,7 +204,7 @@
         "kph": false,
         "nd": true
       },
-      "upd": 1791181304420,
+      "upd": 1791182704071,
       "stKN": "Đang xử lý",
       "stKPH": "Đang xử lý",
       "stND": "Thu hồi"
@@ -717,6 +775,77 @@
       "before": 0,
       "after": 0
     },
+    "QI-2026-00131": {
+      "fish": {
+        "Man": [],
+        "Machine": [],
+        "Method": [],
+        "Material": [],
+        "Measurement": [],
+        "Environment": []
+      },
+      "sel": [],
+      "whys": [
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ]
+      ],
+      "root": "",
+      "head": "Ngày 06/06/2026 Quý khách có nhận các cuộn hàng/bó hàng:",
+      "d": [
+        {
+          "t": "",
+          "x": 0
+        },
+        {
+          "t": "Ngày 06/06/2026 Quý khách có nhận các cuộn hàng/bó hàng:",
+          "x": 0
+        },
+        {
+          "t": "",
+          "x": 0
+        },
+        {
+          "t": "",
+          "x": 0
+        },
+        {
+          "t": "",
+          "x": 0
+        },
+        {
+          "t": "",
+          "x": 0
+        },
+        {
+          "t": "",
+          "x": 0
+        },
+        {
+          "t": "",
+          "x": 0
+        }
+      ],
+      "before": 0,
+      "after": 0
+    },
     "QI-2026-00132": {
       "fish": {
         "Man": [],
@@ -861,7 +990,7 @@
     }
   },
   "open": {
-    "fish": false,
+    "fish": true,
     "why": true,
     "d8": false
   },
@@ -873,8 +1002,9 @@
     "QI-2026-00128": "1uapz68q8",
     "QI-2026-00129": "sr3am4mt",
     "QI-2026-00130": "a3t3zp1812",
-    "QI-2026-00131": "mf4pb4q2",
-    "QI-2026-00132": "1tpmjwntb",
-    "QI-2026-00133": "1fhyjad1f5"
-  }
+    "QI-2026-00131": "2a1jecti",
+    "QI-2026-00132": "1h4espirs",
+    "QI-2026-00133": "17krqog1gh"
+  },
+  "dashFilter": "all"
 }
