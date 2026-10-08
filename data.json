@@ -15,7 +15,8 @@
       "Tôn kẽm - 0.98 x 1219 - G250 - Z120. Tôn kẽm - 0.58 x 1219 - G250 - Z100",
       "Tôn kẽm",
       "APT G550",
-      "Sơn (B16-số PO 4000038391)"
+      "Sơn (B16-số PO 4000038391)",
+      "Nguyên liệu CRC"
     ],
     "cust": [
       "GRADE STEEL METAL INDUSTRIES (M) SDN BHD",
@@ -26,10 +27,74 @@
       "CXL"
     ]
   },
-  "cur": "QI-2026-00133",
+  "cur": "QI-2026-00134",
   "view": "dash",
   "dTab": 0,
   "issues": [
+    {
+      "id": "QI-2026-00134",
+      "desc": "Lỗi xước chạy ra thành phẩm không đạt",
+      "cdate": "2026-10-08",
+      "defect": "",
+      "product": "Nguyên liệu CRC",
+      "cust": "",
+      "sev": "",
+      "by": "Mai Công Danh",
+      "role": "Kĩ sư QA",
+      "note": "",
+      "imgs": [],
+      "files": [],
+      "status": "Đang xử lý",
+      "nd": {
+        "no": ""
+      },
+      "kph": {
+        "place": "NK3",
+        "dept": "NK3-MẠ KẼM",
+        "reason": [
+          "sp"
+        ],
+        "spec": "1.41 x 1200",
+        "net": "22,040",
+        "len": "1.654",
+        "msc": "1005073838",
+        "cls": "new",
+        "lot": "8800070881",
+        "lvl": "n",
+        "origin": "Hòa Phát",
+        "hand": [
+          "gc"
+        ],
+        "hk": "",
+        "num": "CRC/2026001",
+        "content": "Ngày 08/10/2026, dây truyền mạ kẽm Nam Kim 3 chạy cuộn CRC cho đơn hàng XK-HANGZHOU 11 BD, số lô 8800070881 phát hiện lỗi xước chạy ra thành phẩm không đạt",
+        "detail": "Yêu cầu NKPM cải tiến để không phát sinh lỗi tương tự cho các cuộn kế tiếp ",
+        "prod": "Tôn mạ kẽm "
+      },
+      "lot": "",
+      "due": "2026-10-08",
+      "ext": {
+        "requester": "",
+        "country": "",
+        "project": "",
+        "order": "",
+        "total": "",
+        "prodDate": "",
+        "shipDate": "",
+        "recvDate": "",
+        "app": "",
+        "pos": "",
+        "cno": "",
+        "round": ""
+      },
+      "coils": [],
+      "tk": {
+        "kn": false,
+        "kph": true,
+        "nd": false
+      },
+      "upd": 1791439570662
+    },
     {
       "id": "QI-2026-00133",
       "desc": "Ngày 06/06/2026 Quý khách có nhận các cuộn hàng/bó hàng:",
@@ -987,6 +1052,77 @@
       ],
       "before": 0,
       "after": 0
+    },
+    "QI-2026-00134": {
+      "fish": {
+        "Man": [],
+        "Machine": [],
+        "Method": [],
+        "Material": [],
+        "Measurement": [],
+        "Environment": []
+      },
+      "sel": [],
+      "whys": [
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ]
+      ],
+      "root": "",
+      "head": "Lỗi xước chạy ra thành phẩm không đạt",
+      "d": [
+        {
+          "t": "",
+          "x": 0
+        },
+        {
+          "t": "Lỗi xước chạy ra thành phẩm không đạt",
+          "x": 0
+        },
+        {
+          "t": "",
+          "x": 0
+        },
+        {
+          "t": "",
+          "x": 0
+        },
+        {
+          "t": "",
+          "x": 0
+        },
+        {
+          "t": "",
+          "x": 0
+        },
+        {
+          "t": "",
+          "x": 0
+        },
+        {
+          "t": "",
+          "x": 0
+        }
+      ],
+      "before": 0,
+      "after": 0
     }
   },
   "open": {
@@ -1004,7 +1140,8 @@
     "QI-2026-00130": "a3t3zp1812",
     "QI-2026-00131": "2a1jecti",
     "QI-2026-00132": "1h4espirs",
-    "QI-2026-00133": "17krqog1gh"
+    "QI-2026-00133": "17krqog1gh",
+    "QI-2026-00134": "9uqpae12i"
   },
   "dashFilter": "all"
 }
